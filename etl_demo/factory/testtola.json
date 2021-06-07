@@ -1,0 +1,9 @@
+{
+	"name": "testtola",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "f5586726-9917-4ddb-99c0-623dc4ad2b05",
+		"tenantId": "fa0a1ef4-7440-41db-8b65-92b20b3f344d"
+	}
+}
