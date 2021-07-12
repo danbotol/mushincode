@@ -1,0 +1,551 @@
+{
+	"name": "AzureSqlTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "PRIMARYCONTACTEMAILPURPOSE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PRIMARYCONTACTFAXPURPOSE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PRIMARYCONTACTPHONEPURPOSE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PRIMARYCONTACTURLPURPOSE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BIRTHDATE",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "CITIZENSHIPCOUNTRYREGION",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NATIONALITYCOUNTRYREGION",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DECEASEDDATE",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "DISABLEDVERIFICATIONDATE",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "EDUCATION",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ETHNICORIGINID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FATHERBIRTHCOUNTRYREGION",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GENDER",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ISDISABLED",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ISFULLTIMESTUDENT",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MOTHERBIRTHCOUNTRYREGION",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NATIVELANGUAGEID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PERSONBIRTHCOUNTRYREGION",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PERSONBIRTHCITY",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ISDISABLEDVETERAN",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ISEXPATRIATERULINGAPPLICABLE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "EXPATRIATERULINGVALIDFROM",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "EXPATRIATERULINGVALIDTO",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "MARITALSTATUS",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NUMBEROFDEPENDENTS",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MILITARYSERVICESTARTDATE",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "MILITARYSERVICEENDDATE",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "VETERANSTATUSID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ADDRESSBOOKS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ADDRESSPURPOSE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PARTYTYPE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ELECTRONICLOCATIONID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ADDRESSNAMEDESCRIPTION",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PRIMARYCONTACTFACEBOOKPURPOSE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PRIMARYCONTACTLINKEDINPURPOSE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PRIMARYCONTACTTWITTERPURPOSE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WORKERTYPE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "WORKERSTATUS",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PERSONALTITLE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PERSONALSUFFIX",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ADDRESSCOUNTRYREGIONISOCODE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OFFICELOCATION",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OBJECTID",
+				"type": "uniqueidentifier"
+			},
+			{
+				"name": "ALLOWREHIRE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ADDRESSZIPCODE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DEFINITIONGROUP",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EXECUTIONID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ISSELECTED",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TRANSFERSTATUS",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PERSONNELNUMBER",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PARTYNUMBER",
+				"type": "nvarchar"
+			},
+			{
+				"name": "KNOWNAS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LANGUAGEID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NAME",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NAMEALIAS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PHONETICFIRSTNAME",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PHONETICLASTNAME",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PHONETICMIDDLENAME",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PRIMARYADDRESSLOCATION",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "PRIMARYCONTACTEMAIL",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PRIMARYCONTACTEMAILDESCRIPTION",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PRIMARYCONTACTEMAILISIM",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PRIMARYCONTACTEMAILISPRIVATE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PRIMARYCONTACTFAX",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PRIMARYCONTACTFAXDESCRIPTION",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PRIMARYCONTACTFAXEXTENSION",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PRIMARYCONTACTFAXISPRIVATE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PRIMARYCONTACTPHONE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PRIMARYCONTACTPHONEDESCRIPTION",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PRIMARYCONTACTPHONEEXTENSION",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PRIMARYCONTACTPHONEISMOBILE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PRIMARYCONTACTPHONEISPRIVATE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PRIMARYCONTACTURL",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PRIMARYCONTACTURLDESCRIPTION",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PRIMARYCONTACTURLISPRIVATE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PRIMARYCONTACTFACEBOOK",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PRIMARYCONTACTFACEBOOKDESCRIPTION",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PRIMARYCONTACTFACEBOOKISPRIVATE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PRIMARYCONTACTLINKEDIN",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PRIMARYCONTACTLINKEDINDESCRIPTION",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PRIMARYCONTACTLINKEDINISPRIVATE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PRIMARYCONTACTTWITTER",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PRIMARYCONTACTTWITTERISPRIVATE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PRIMARYCONTACTTWITTERDESCRIPTION",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PROFESSIONALSUFFIX",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PROFESSIONALTITLE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TITLEID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ORIGINALHIREDATETIME",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "SENIORITYDATE",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ANNIVERSARYDATETIME",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "OFFICELOCATIONID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SUMMARYVALIDFROM",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "SUMMARYVALIDTO",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "PERSONDETAILSVALIDFROM",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "PERSONDETAILSVALIDTO",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ADDRESSCITY",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ADDRESSCOUNTRYREGIONID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ADDRESSCOUNTY",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ADDRESSDISTRICTNAME",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ADDRESSLOCATIONID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ADDRESSSTATE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ADDRESSSTREET",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ADDRESSVALIDFROM",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ADDRESSVALIDTO",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "FIRSTNAME",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MIDDLENAME",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LASTNAMEPREFIX",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LASTNAME",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NAMESEQUENCEDISPLAYAS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WORKSFROMHOME",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "USER_",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PERSONUSERVALIDFROM",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "PERSONUSERVALIDTO",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "IDENTITYEMAIL",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IDENTITYPROVIDER",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PARTITION",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SYNCSTARTDATETIME",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "RECID",
+				"type": "bigint",
+				"precision": 19
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "HcmWorkerStaging"
+		}
+	}
+}
