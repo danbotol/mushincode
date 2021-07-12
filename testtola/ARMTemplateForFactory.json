@@ -1,0 +1,821 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "testtola"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
+		"AzureBlobStorage2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage2'"
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [
+							{
+								"name": "Source",
+								"value": "adf-data//Sample-Spreadsheet-10000-rows.csv"
+							},
+							{
+								"name": "Destination",
+								"value": "dftest//"
+							}
+						],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "DelimitedText1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DelimitedText2",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/DelimitedText1')]",
+				"[concat(variables('factoryId'), '/datasets/DelimitedText2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "PRIMARYCONTACTEMAILPURPOSE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRIMARYCONTACTFAXPURPOSE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRIMARYCONTACTPHONEPURPOSE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRIMARYCONTACTURLPURPOSE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BIRTHDATE",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "CITIZENSHIPCOUNTRYREGION",
+						"type": "nvarchar"
+					},
+					{
+						"name": "NATIONALITYCOUNTRYREGION",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DECEASEDDATE",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "DISABLEDVERIFICATIONDATE",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "EDUCATION",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ETHNICORIGINID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FATHERBIRTHCOUNTRYREGION",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GENDER",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ISDISABLED",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ISFULLTIMESTUDENT",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "MOTHERBIRTHCOUNTRYREGION",
+						"type": "nvarchar"
+					},
+					{
+						"name": "NATIVELANGUAGEID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PERSONBIRTHCOUNTRYREGION",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PERSONBIRTHCITY",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ISDISABLEDVETERAN",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ISEXPATRIATERULINGAPPLICABLE",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "EXPATRIATERULINGVALIDFROM",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "EXPATRIATERULINGVALIDTO",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "MARITALSTATUS",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "NUMBEROFDEPENDENTS",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "MILITARYSERVICESTARTDATE",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "MILITARYSERVICEENDDATE",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "VETERANSTATUSID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ADDRESSBOOKS",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ADDRESSPURPOSE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PARTYTYPE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ELECTRONICLOCATIONID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ADDRESSNAMEDESCRIPTION",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRIMARYCONTACTFACEBOOKPURPOSE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRIMARYCONTACTLINKEDINPURPOSE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRIMARYCONTACTTWITTERPURPOSE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "WORKERTYPE",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "WORKERSTATUS",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "PERSONALTITLE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PERSONALSUFFIX",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ADDRESSCOUNTRYREGIONISOCODE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "OFFICELOCATION",
+						"type": "nvarchar"
+					},
+					{
+						"name": "OBJECTID",
+						"type": "uniqueidentifier"
+					},
+					{
+						"name": "ALLOWREHIRE",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ADDRESSZIPCODE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DEFINITIONGROUP",
+						"type": "nvarchar"
+					},
+					{
+						"name": "EXECUTIONID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ISSELECTED",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "TRANSFERSTATUS",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "PERSONNELNUMBER",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PARTYNUMBER",
+						"type": "nvarchar"
+					},
+					{
+						"name": "KNOWNAS",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LANGUAGEID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "NAME",
+						"type": "nvarchar"
+					},
+					{
+						"name": "NAMEALIAS",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PHONETICFIRSTNAME",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PHONETICLASTNAME",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PHONETICMIDDLENAME",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRIMARYADDRESSLOCATION",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "PRIMARYCONTACTEMAIL",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRIMARYCONTACTEMAILDESCRIPTION",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRIMARYCONTACTEMAILISIM",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "PRIMARYCONTACTEMAILISPRIVATE",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "PRIMARYCONTACTFAX",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRIMARYCONTACTFAXDESCRIPTION",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRIMARYCONTACTFAXEXTENSION",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRIMARYCONTACTFAXISPRIVATE",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "PRIMARYCONTACTPHONE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRIMARYCONTACTPHONEDESCRIPTION",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRIMARYCONTACTPHONEEXTENSION",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRIMARYCONTACTPHONEISMOBILE",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "PRIMARYCONTACTPHONEISPRIVATE",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "PRIMARYCONTACTURL",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRIMARYCONTACTURLDESCRIPTION",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRIMARYCONTACTURLISPRIVATE",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "PRIMARYCONTACTFACEBOOK",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRIMARYCONTACTFACEBOOKDESCRIPTION",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRIMARYCONTACTFACEBOOKISPRIVATE",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "PRIMARYCONTACTLINKEDIN",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRIMARYCONTACTLINKEDINDESCRIPTION",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRIMARYCONTACTLINKEDINISPRIVATE",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "PRIMARYCONTACTTWITTER",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRIMARYCONTACTTWITTERISPRIVATE",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "PRIMARYCONTACTTWITTERDESCRIPTION",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PROFESSIONALSUFFIX",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PROFESSIONALTITLE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TITLEID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ORIGINALHIREDATETIME",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "SENIORITYDATE",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "ANNIVERSARYDATETIME",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "OFFICELOCATIONID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SUMMARYVALIDFROM",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "SUMMARYVALIDTO",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "PERSONDETAILSVALIDFROM",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "PERSONDETAILSVALIDTO",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "ADDRESSCITY",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ADDRESSCOUNTRYREGIONID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ADDRESSCOUNTY",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ADDRESSDISTRICTNAME",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ADDRESSLOCATIONID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ADDRESSSTATE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ADDRESSSTREET",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ADDRESSVALIDFROM",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "ADDRESSVALIDTO",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "FIRSTNAME",
+						"type": "nvarchar"
+					},
+					{
+						"name": "MIDDLENAME",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LASTNAMEPREFIX",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LASTNAME",
+						"type": "nvarchar"
+					},
+					{
+						"name": "NAMESEQUENCEDISPLAYAS",
+						"type": "nvarchar"
+					},
+					{
+						"name": "WORKSFROMHOME",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "USER_",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PERSONUSERVALIDFROM",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "PERSONUSERVALIDTO",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "IDENTITYEMAIL",
+						"type": "nvarchar"
+					},
+					{
+						"name": "IDENTITYPROVIDER",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PARTITION",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SYNCSTARTDATETIME",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "RECID",
+						"type": "bigint",
+						"precision": 19
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "HcmWorkerStaging"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Sample-Spreadsheet-10000-rows.csv",
+						"container": "adf-data"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "dftest"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureBlobStorage1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage2')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureBlobStorage2_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureSqlDatabase1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
